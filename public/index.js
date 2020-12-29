@@ -1,3 +1,7 @@
 import { quiz } from '../src/quiz';
 
-quiz();
+const options = {
+  selector: '#app'
+};
+
+quiz(options);

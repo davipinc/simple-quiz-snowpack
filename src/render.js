@@ -1,16 +1,20 @@
 import { render } from 'lit-html';
-const app = document.querySelectorAll('#app')[0];
-import { state } from './state';
+import state from './state';
+import options from './options';
 import questions from './content/questions';
 
-import quizTemplate from './templates/quizTemplate';
+import textTemplate from './questionTypes/textTemplate';
 import summaryTemplate from './templates/summaryTemplate';
+
+function getAppNode() {
+  return document.querySelectorAll(options.selector)[0];
+}
 
 export function renderQuestion() {
   const { currentQuestion } = state;
-  render(quizTemplate(questions[currentQuestion]), app);  
+  render(textTemplate(questions[currentQuestion]), getAppNode());  
 }
 
 export function renderSummary() {
-  render(summaryTemplate(), app);  
+  render(summaryTemplate(), getAppNode());  
 }

@@ -1,7 +1,11 @@
+import { importQuestions } from './loaders';
+
 export const state = {};
 
 const initialState = {
-  currentQuestion: 0
+  currentQuestion: 0,
+  totalQuestions: 0,
+  questions: []
 };
 
 function checkState(currentState = {}) {
@@ -36,6 +40,8 @@ export function initialiseState() {
   Object.keys(initialState).forEach(key => {
     state[key] = initialState[key];
   });
+
+  importQuestions();
 }
 
 export function resetState() {
@@ -43,3 +49,5 @@ export function resetState() {
   removeKeys(uninitialisedKeys);
   initialiseState();
 }
+
+export default state;
