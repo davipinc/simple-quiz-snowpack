@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "ES2017",
+        "baseUrl": "./",
+        "outDir": "target",
+        "allowJs": true,
+        "checkJs": true,
+       "esModuleInterop": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "module": "es2020",
+        "lib": [
+            "es2017",
+            "dom"
+        ]
+    },
+    "exclude": [
+        "build/*",
+        "public/*",
+        "node_modules/*",
+        "**/*.svg"
+    ]
+}
