@@ -15,18 +15,14 @@ const questions = [
     instruction: html`<h2>bat</h2><p>baz</p>`
   }
 ];
-// const sayHello = (name) => {
-  
-//   return html`<h1>Hello ${name}</h1>`;
-// };
 
 function renderQuestion() {
-  const { currentQuestion: currentQuestion } = state;
+  const { currentQuestion } = state;
   render(quizTemplate(questions[currentQuestion]), app);  
 }
-function nextQuestion() {
-  state.currentQuestion += 1;
-  renderQuestion();
+
+function renderSummary() {
+  render(summaryTemplate(), app);  
 }
 
 function checkState(currentState = {}) {
@@ -69,6 +65,24 @@ function resetState() {
   initialiseState();
   writePage();
 }
+
+function endQuiz() {
+  renderSummary();
+}
+
+function nextQuestion() {
+  state.currentQuestion += 1;
+
+  if (!questions[state.currentQuestion]) {
+    endQuiz();
+    return;
+  }
+  renderQuestion();
+}
+
+const summaryTemplate = () => html`
+  <h2>Finished</h2>
+`;
 
 const quizTemplate = (question) => html`
   <section class="question" aria-live="polite">
