@@ -6,6 +6,11 @@ export default (currentQuestion) => {
   const question = state.questions[currentQuestion];
   const answer = state.answers[currentQuestion];
 
+  if (!question) {
+    console.debug('Questions object not ready yet');
+    return nothing;
+  }
+
   if (!answer) {
     console.debug('Answers object not ready yet');
     return nothing;

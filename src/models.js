@@ -40,7 +40,6 @@ export function getModel(modelName = Symbol('whatever'), defaultState = {}, opti
   // add getters and setters
   Object.keys(defaultState).forEach( key => {
     const initialType = varType(defaultState[key]);
-    const byValue = isByValue(defaultState[key]);
     const propName = `${prefix}${key}`;
     Object.defineProperty( model, key, {
       get: function(){ return this[propName]; },
@@ -55,23 +54,9 @@ export function getModel(modelName = Symbol('whatever'), defaultState = {}, opti
           throw new Error(`Will not coerce type of ${key} from ${initialType} to ${type}`);
         }
 
-        if (byValue) {
-          this[propName] = value;
-          updateFromModel(model, key);
-          return;
-        }
-
-        if (type === 'array') {
-          // clear the array
-          this[propName].splice(0, this[propName].length);
-          value.forEach( item => {
-            this[propName].push(item);
-          });
-          updateFromModel(model, key);
-          return;
-        }
-
-        throw new Error(`Cannot write to ${key}`);
+        this[propName] = value;
+        updateFromModel(model, key);
+        return;
       }
     });
   });

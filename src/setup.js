@@ -15,11 +15,5 @@ export function importQuestions() {
     return questionModel(question);
   });
 
-  Object.defineProperty( state, 'totalQuestions', {
-    get: function() {
-      return state.questions.length;
-    }
-  });
-
   resetAnswers();
 }
