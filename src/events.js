@@ -24,7 +24,7 @@ export function prevQuestion() {
 }
 
 export function nextQuestion() {
-  if (state.currentQuestion === state.totalQuestions) {
+  if (state.currentQuestion === state.totalQuestions-1) {
     alert('You are on the last question already');
     return;
   }
@@ -35,6 +35,5 @@ export function nextQuestion() {
 
 
 export function updateQuestion() {
-
   renderQuestion();
 }
