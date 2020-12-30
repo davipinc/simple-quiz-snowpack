@@ -10,7 +10,7 @@ export function reset() {
     return;
   }
   resetState();
-  renderQuestion();
+  updateQuestion();
 }
 
 export function prevQuestion() {
@@ -20,7 +20,7 @@ export function prevQuestion() {
   }
 
   state.currentQuestion -= 1;
-  renderQuestion();
+  updateQuestion();
 }
 
 export function nextQuestion() {
@@ -30,5 +30,11 @@ export function nextQuestion() {
   }
 
   state.currentQuestion += 1;
+  updateQuestion();
+}
+
+
+export function updateQuestion() {
+
   renderQuestion();
 }

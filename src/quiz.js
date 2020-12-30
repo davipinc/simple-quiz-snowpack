@@ -1,9 +1,9 @@
 import { initialiseState } from './state';
 import { setOptions } from './options';
-import { renderQuestion } from './render';
+import { updateQuestion } from './events';
 
 export function quiz( options = { selector : ''}) {
   setOptions(options);
   initialiseState();
-  renderQuestion();
+  updateQuestion();
 }

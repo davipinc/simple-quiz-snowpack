@@ -1,11 +1,14 @@
-import { importQuestions } from './loaders';
+import { importQuestions, resetAnswers } from './setup';
+import { renderQuestion } from './render';
 
 export const state = {};
 
 const initialState = {
   currentQuestion: 0,
   totalQuestions: 0,
-  questions: []
+  
+  questions: [],
+  answers: []
 };
 
 function checkState(currentState = {}) {
@@ -38,16 +41,29 @@ function removeKeys(uninitialisedKeys) {
 
 export function initialiseState() {
   Object.keys(initialState).forEach(key => {
-    state[key] = initialState[key];
+    console.log(`Overwriting ${key}`, state[key], 'with', initialState[key]);
+
+    if (Array.isArray(initialState[key])) {
+      // arrays
+      state[key] = initialState[key].slice(0);
+    } else if (typeof initialState[key] === 'object') {
+      // objects
+      state[key] = Object.assign({}, initialState[key]);
+    } else {
+      // primitives
+      state[key] = initialState[key];
+    }
   });
 
   importQuestions();
+  resetAnswers();
 }
 
 export function resetState() {
   const { uninitialisedKeys } = checkState(state);
   removeKeys(uninitialisedKeys);
   initialiseState();
+  renderQuestion();
 }
 
 export default state;

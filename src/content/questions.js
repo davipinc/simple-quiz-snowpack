@@ -1,5 +1,4 @@
-import { spell } from './factories';
-
+import { spell } from '../models';
 
 const questions = [
   spell('human'),
