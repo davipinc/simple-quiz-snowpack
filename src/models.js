@@ -10,17 +10,6 @@ export const STATE_MODEL = Symbol('state');
 
 export const interactiveShape = { question: {}, answer: {} };
 
-export function spell(word) {
-  const phrase = `How do you spell ${word}`;
-
-  return {
-    id: word.toLowerCase(),
-    instruction: html` <h2 aria-live="assertive" aria-atomic="true" aria-labelledby="${phrase}">${phrase}</h2> `,
-    type: TEXT_QUESTION,
-    answers: [word]
-  };
-}
-
 export function getModel(modelName = Symbol('whatever'), defaultState = {}, options = { readOnly: false }) {
   const model = {};
   const prefix = '_';

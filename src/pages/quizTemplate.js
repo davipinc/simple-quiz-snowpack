@@ -21,7 +21,7 @@ export default (data = interactiveShape) => {
       <h1>Question ${state.currentQuestion + 1} of ${state.totalQuestions}</h1>
     </section>
 
-    <section class="interactive-block">${getTemplate(data)}</section>
+    <section class="interactive-block" aria-live="assertive">${getTemplate(data)}</section>
 
     <section class="controls-block">${controlsTemplate()}</section>
   `;
