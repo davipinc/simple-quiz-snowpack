@@ -1,37 +1,45 @@
-import { html, nothing } from 'lit-html';
-import { state } from '../state';
-import { prevQuestion, nextQuestion, reset} from '../events';
+import { html } from 'lit-html';
+import { resetState, state } from '../state';
 
-export default (currentQuestion) => {
-  const question = state.questions[currentQuestion];
-  const answer = state.answers[currentQuestion];
-
-  if (!question) {
-    console.debug('Questions object not ready yet');
-    return nothing;
+function prevQuestion() {
+  if (state.currentQuestion === 0) {
+    alert('You are on the first question already');
+    return;
   }
 
-  if (!answer) {
-    console.debug('Answers object not ready yet');
-    return nothing;
+  state.currentQuestion -= 1;
+}
+
+function nextQuestion() {
+  if (state.currentQuestion === state.totalQuestions-1) {
+    alert('You are on the last question already');
+    return;
   }
 
-  function setAnswer(event) {
-    console.debug('answer', event.srcElement.value, event);
-    state.answers[state.currentQuestion].text = event.srcElement.value;
+  state.currentQuestion += 1;
+}
+function setAnswer(event) {
+  console.debug('answer', event.srcElement.value, event);
+  state.answers[state.currentQuestion].text = event.srcElement.value;
+}
+
+function reset() {
+  if (!confirm('Are you sure you want to reset?')) {
+    return;
   }
-  
-  // console.log('Q', question);
-  // console.log('A', answer);
+  resetState();
+}
+
+export default (data = { question: {}, answer: {}}) => {
   
   return html`
   <section class="question" aria-live="polite">
     <h1>Question ${state.currentQuestion + 1} of ${state.totalQuestions}</h1>
-    <p>${question.instruction}</p>
+    <p>${data.question.instruction}</p>
   </section>
 
   <section class="answer">
-    <input type="text" title="Type your answer here" .value=${answer.text} @keyup=${setAnswer} @change=${setAnswer} />
+    <input type="text" title="Type your answer here" .value=${data.answer.text} @keyup=${setAnswer} @change=${setAnswer} />
   </section>
 
   <section class="answer">

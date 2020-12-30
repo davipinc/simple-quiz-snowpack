@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import { updateFromModel } from './events';
 
-import { isByValue, varType } from './utils';
+import { varType } from './utils';
 
 export const TEXT_QUESTION = Symbol('text');
 export const QUESTION_MODEL = Symbol('question');
