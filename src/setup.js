@@ -1,19 +1,25 @@
-import questions from './content/questions';
+import loadedQuestions from './content/questions';
 import state from './state';
-import { answerModel } from './models';
-
-export function importQuestions() {
-  state.questions = questions;
-  state.totalQuestions = questions.length;
-}
+import { answerModel, questionModel } from './models';
 
 export function resetAnswers() {
-  const { questions, answers } = state;
+  const { questions } = state;
 
-  // clear answers
-  answers.splice(0, answers.length);
-
-  questions.forEach( question => {
-    answers.push(answerModel(question.id));
+  state.answers = questions.map( question => {
+    return answerModel(question.id);
   });
+}
+
+export function importQuestions() {
+  state.questions = loadedQuestions.map( question => {
+    return questionModel(question);
+  });
+
+  Object.defineProperty( state, 'totalQuestions', {
+    get: function() {
+      return state.questions.length;
+    }
+  });
+
+  resetAnswers();
 }

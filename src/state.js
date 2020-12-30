@@ -1,15 +1,14 @@
-import { importQuestions, resetAnswers } from './setup';
-import { renderQuestion } from './render';
+import { importQuestions } from './setup';
+import { getModel, STATE_MODEL } from './models';
 
-export const state = {};
-
-const initialState = {
+export const initialState = {
   currentQuestion: 0,
-  totalQuestions: 0,
   
   questions: [],
   answers: []
 };
+
+export const state = getModel(STATE_MODEL, initialState);
 
 function checkState(currentState = {}) {
   const stateKeys = Object.keys(currentState);
@@ -34,36 +33,22 @@ function checkState(currentState = {}) {
 
 function removeKeys(uninitialisedKeys) {
   uninitialisedKeys.forEach(key => {
-    console.info(`Removing state '${key}': ${state[key]}`);
+    console.debug(`Removing state '${key}': ${state[key]}`);
     delete state[key];
   });
 }
 
+
 export function initialiseState() {
-  Object.keys(initialState).forEach(key => {
-    console.log(`Overwriting ${key}`, state[key], 'with', initialState[key]);
-
-    if (Array.isArray(initialState[key])) {
-      // arrays
-      state[key] = initialState[key].slice(0);
-    } else if (typeof initialState[key] === 'object') {
-      // objects
-      state[key] = Object.assign({}, initialState[key]);
-    } else {
-      // primitives
-      state[key] = initialState[key];
-    }
-  });
-
+  console.debug('initialiseState');
   importQuestions();
-  resetAnswers();
 }
 
 export function resetState() {
+  console.debug('resetState');
   const { uninitialisedKeys } = checkState(state);
   removeKeys(uninitialisedKeys);
   initialiseState();
-  renderQuestion();
 }
 
 export default state;

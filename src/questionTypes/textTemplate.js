@@ -1,4 +1,4 @@
-import { html } from 'lit-html';
+import { html, nothing } from 'lit-html';
 import { state } from '../state';
 import { prevQuestion, nextQuestion, reset} from '../events';
 
@@ -6,14 +6,18 @@ export default (currentQuestion) => {
   const question = state.questions[currentQuestion];
   const answer = state.answers[currentQuestion];
 
+  if (!answer) {
+    console.debug('Answers object not ready yet');
+    return nothing;
+  }
+
   function setAnswer(event) {
-    // console.log('answer', event);
+    console.debug('answer', event.srcElement.value, event);
     state.answers[state.currentQuestion].text = event.srcElement.value;
   }
   
   // console.log('Q', question);
   // console.log('A', answer);
-
   
   return html`
   <section class="question" aria-live="polite">

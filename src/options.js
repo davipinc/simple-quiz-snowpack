@@ -8,7 +8,7 @@ export function setOptions(customOptions = defaultOptions) {
     const optionExists = defaultOptions[key] !== undefined;
 
     if (optionExists) {
-      console.log(`${isDefault ? 'Default' : 'Custom'} option '${key}':`, customOptions[key]);
+      console.debug(`${isDefault ? 'Default' : 'Custom'} option '${key}':`, customOptions[key]);
       options[key] = customOptions[key];
     } else {
       console.warn(`Non-existent option '${key}'`);
