@@ -15,5 +15,5 @@ export function isByValue(thing) {
   return type === 'string' || type === 'boolean' || type === 'number' || type === 'undefined' || type === 'null';
 }
 export function isByReference(thing) {
-  return !isByValue(thing);  
+  return !isByValue(thing);
 }

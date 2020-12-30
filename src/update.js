@@ -29,9 +29,9 @@ export function updateQuestion() {
     answer
   };
 
-  render(textTemplate(data), getAppNode());  
+  render(textTemplate(data), getAppNode());
 }
 
 export function updateSummary() {
-  render(summaryTemplate(), getAppNode());  
+  render(summaryTemplate(), getAppNode());
 }

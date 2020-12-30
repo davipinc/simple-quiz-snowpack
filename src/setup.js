@@ -5,13 +5,13 @@ import { answerModel, questionModel } from './models';
 export function resetAnswers() {
   const { questions } = state;
 
-  state.answers = questions.map( question => {
+  state.answers = questions.map((question) => {
     return answerModel(question.id);
   });
 }
 
 export function importQuestions() {
-  state.questions = loadedQuestions.map( question => {
+  state.questions = loadedQuestions.map((question) => {
     return questionModel(question);
   });
 

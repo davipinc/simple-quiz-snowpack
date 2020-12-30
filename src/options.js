@@ -1,9 +1,8 @@
-
 const defaultOptions = { selector: '#something' };
 const options = {};
 
 export function setOptions(customOptions = defaultOptions) {
-  Object.keys(customOptions).forEach(key => {
+  Object.keys(customOptions).forEach((key) => {
     const isDefault = options[key] !== defaultOptions[key];
     const optionExists = defaultOptions[key] !== undefined;
 
@@ -13,7 +12,6 @@ export function setOptions(customOptions = defaultOptions) {
     } else {
       console.warn(`Non-existent option '${key}'`);
     }
-    
   });
 }
 

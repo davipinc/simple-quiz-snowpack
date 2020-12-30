@@ -24,6 +24,19 @@
         "semi": [
             "error",
             "always"
+        ],
+        "prettier/prettier": [
+          "warn",
+          {
+            "linebreak-style": 0,
+            "trailingComma": "none",
+            "singleQuote": true,
+            "printWidth": 120,
+            "endOfLine": "auto"
+          }
         ]
-    }
+    },
+    "plugins": [
+      "prettier"
+    ]
 }
