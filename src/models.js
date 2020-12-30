@@ -8,10 +8,14 @@ export const QUESTION_MODEL = Symbol('question');
 export const ANSWER_MODEL = Symbol('answer');
 export const STATE_MODEL = Symbol('state');
 
+export const interactiveShape = { question: {}, answer: {} };
+
 export function spell(word) {
+  const phrase = `How do you spell ${word}`;
+
   return {
     id: word.toLowerCase(),
-    instruction: html` <h2>How do you spell '${word}'</h2> `,
+    instruction: html` <h2 aria-live="assertive" aria-atomic="true" aria-labelledby="${phrase}">${phrase}</h2> `,
     type: TEXT_QUESTION,
     answers: [word]
   };

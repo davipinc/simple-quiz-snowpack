@@ -2,14 +2,18 @@ import { render } from 'lit-html';
 import state from './state';
 import options from './options';
 
-import textTemplate from './questionTypes/textTemplate';
-import summaryTemplate from './templates/summaryTemplate';
+import quizTemplate from './pages/quizTemplate';
+import summaryTemplate from './pages/summaryTemplate';
 
 function getAppNode() {
   return document.querySelectorAll(options.selector)[0];
 }
 
-export function updateQuestion() {
+// function getSelectedNode(selector) {
+//   return document.querySelectorAll(options.selector + ' ' + selector)[0];
+// }
+
+export function updateQuiz() {
   const { currentQuestion, questions, answers } = state;
   const question = questions[currentQuestion];
   const answer = answers[currentQuestion];
@@ -29,7 +33,7 @@ export function updateQuestion() {
     answer
   };
 
-  render(textTemplate(data), getAppNode());
+  render(quizTemplate(data), getAppNode());
 }
 
 export function updateSummary() {
