@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import { interactiveShape, TEXT_QUESTION } from '../models';
 import { state } from '../state';
 
+import headingTemplate from '../panels/headingTemplate';
 import textQuestion from '../interactives/textQuestion';
 import controlsTemplate from '../panels/controlsTemplate';
 
@@ -17,11 +18,9 @@ function getTemplate(data = interactiveShape) {
 
 export default (data = interactiveShape) => {
   return html`
-    <section class="heading-block heading">
-      <h1>Question ${state.currentQuestion + 1} of ${state.totalQuestions}</h1>
-    </section>
+    <section class="heading-block heading">${headingTemplate()}</section>
 
-    <section class="interactive-block" aria-live="assertive">${getTemplate(data)}</section>
+    <section class="interactive-block" aria-live="polite">${getTemplate(data)}</section>
 
     <section class="controls-block">${controlsTemplate()}</section>
   `;
