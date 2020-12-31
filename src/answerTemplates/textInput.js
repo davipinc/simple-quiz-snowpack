@@ -1,12 +1,23 @@
 import { html } from 'lit-html';
+import { ENTER_KEYCODE } from '../constants';
 import { interactiveShape } from '../models';
+import { nextQuestion } from '../navigation';
 import { state } from '../state';
+
 
 function setAnswer(event) {
   console.debug('answer', event.srcElement.value, event);
   state.answers[state.currentQuestion].text = event.srcElement.value;
 }
 
+function keyHandler(event) {
+  if (event.keyCode === ENTER_KEYCODE) {
+    nextQuestion();
+    return;
+  }
+
+  setAnswer(event);
+}
 export default function (data = interactiveShape) {
   const fieldId = 'answer-text';
   return html`
@@ -17,7 +28,7 @@ export default function (data = interactiveShape) {
         type="text"
         placeholder="Type your answer here"
         .value=${data.answer.text}
-        @keyup=${setAnswer}
+        @keyup=${keyHandler}
         @change=${setAnswer}
       />
     </label>

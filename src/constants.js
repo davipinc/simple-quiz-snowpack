@@ -10,3 +10,5 @@ export const RESULT_MODEL = Symbol('result');
 export const RIGHT_ANSWER = 1;
 export const WRONG_ANSWER = 0;
 export const PENDING_ANSWER = -99;
+
+export const ENTER_KEYCODE = 13;
