@@ -18,6 +18,7 @@
         "build/*",
         "public/*",
         "node_modules/*",
-        "**/*.svg"
+        "**/*.svg",
+        "**/*.txt"
     ]
 }

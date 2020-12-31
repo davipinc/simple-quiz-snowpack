@@ -20,6 +20,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.0",
     "prettier": "^2.2.1",
-    "snowpack": "^2.18.5"
+    "snowpack": "^2.18.5",
+    "snowpack-plugin-unicode": "^1.0.0"
   }
 }
