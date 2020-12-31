@@ -8,13 +8,18 @@ function setAnswer(event) {
 }
 
 export default function (data = interactiveShape) {
+  const fieldId = 'answer-text';
   return html`
-    <input
-      type="text"
-      placeholder="Type your answer here"
-      .value=${data.answer.text}
-      @keyup=${setAnswer}
-      @change=${setAnswer}
-    />
+    <label for=${fieldId}>
+    Answer:
+      <input
+        id=${fieldId}
+        type="text"
+        placeholder="Type your answer here"
+        .value=${data.answer.text}
+        @keyup=${setAnswer}
+        @change=${setAnswer}
+      />
+    </label>
   `;
 }

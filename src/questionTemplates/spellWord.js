@@ -23,7 +23,6 @@ const spellQuestion = (word) => {
         data-speak="${word}"
         autocomplete="off"
         spellcheck="false"
-        style="vertical-align:text-bottom"
         value="Word &#9654;"
       />
     </div>
