@@ -1,4 +1,4 @@
-import { ANSWER_MODEL, QUESTION_MODEL, STATE_MODEL } from './models';
+import { ANSWER_MODEL, QUESTION_MODEL, STATE_MODEL } from './constants';
 import { updateQuiz } from './update';
 
 export function updateFromModel(model, modelProp) {

@@ -1,5 +1,6 @@
 import { importQuestions } from './setup';
-import { getModel, STATE_MODEL } from './models';
+import { getModel } from './models';
+import { STATE_MODEL } from './constants';
 
 export const initialState = {
   currentQuestion: 0,

@@ -1,12 +1,8 @@
 import { html } from 'lit-html';
+import { ANSWER_MODEL, QUESTION_MODEL } from './constants';
 import { updateFromModel } from './events';
 
 import { varType } from './utils';
-
-export const TEXT_QUESTION = Symbol('text');
-export const QUESTION_MODEL = Symbol('question');
-export const ANSWER_MODEL = Symbol('answer');
-export const STATE_MODEL = Symbol('state');
 
 export const interactiveShape = { question: {}, answer: {} };
 
@@ -61,7 +57,8 @@ export function questionModel(
   question = {
     id: '',
     instruction: html`<!-- empty -->`,
-    type: Symbol('unknown-question-type'),
+    questionType: Symbol('unknown-question-type'),
+    answerType: Symbol('unknown-answer-type'),
     answers: []
   }
 ) {

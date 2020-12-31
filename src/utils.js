@@ -17,3 +17,7 @@ export function isByValue(thing) {
 export function isByReference(thing) {
   return !isByValue(thing);
 }
+
+export function getDataProp(event, prop) {
+  return event.srcElement.dataset[prop];
+}

@@ -9,11 +9,9 @@ function setAnswer(event) {
 
 export default function (data = interactiveShape) {
   return html`
-    <section class="instruction" aria-live="polite">${data.question.instruction}</section>
-
     <input
       type="text"
-      title="Type your answer here"
+      placeholder="Type your answer here"
       .value=${data.answer.text}
       @keyup=${setAnswer}
       @change=${setAnswer}

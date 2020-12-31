@@ -1,4 +1,4 @@
-import loadedQuestions from './content/questions';
+import loadedQuestions from './questionGenerators/spellingQuestions';
 import state from './state';
 import { answerModel, questionModel } from './models';
 

@@ -1,16 +1,16 @@
 import { html } from 'lit-html';
-import { interactiveShape, TEXT_QUESTION } from '../models';
-import { state } from '../state';
+import { interactiveShape } from '../models';
 
 import headingTemplate from '../panels/headingTemplate';
-import textQuestion from '../interactives/textQuestion';
+import textInput from '../answerTemplates/textInput';
 import controlsTemplate from '../panels/controlsTemplate';
+import { TEXT_INPUT } from '../constants';
 
-function getTemplate(data = interactiveShape) {
-  const templateType = data.question.type;
+function getAnswerTemplate(data = interactiveShape) {
+  const answerType = data.question.answerType;
 
-  if (templateType === TEXT_QUESTION) {
-    return textQuestion(data);
+  if (answerType === TEXT_INPUT) {
+    return textInput(data);
   }
 
   throw new Error('Unknown question type');
@@ -20,7 +20,9 @@ export default (data = interactiveShape) => {
   return html`
     <section class="heading-block heading">${headingTemplate()}</section>
 
-    <section class="interactive-block" aria-live="polite">${getTemplate(data)}</section>
+    <section class="instruction-block" aria-live="polite">${data.question.instruction}</section>
+
+    <section class="interactive-block" aria-live="polite">${getAnswerTemplate(data)}</section>
 
     <section class="controls-block">${controlsTemplate()}</section>
   `;
