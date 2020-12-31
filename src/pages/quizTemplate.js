@@ -19,13 +19,14 @@ function getAnswerTemplate(data = interactiveShape) {
 
 export default (data = interactiveShape) => {
   return html`
-    <section class="heading-block heading" aria-live="polite">${headingTemplate()}</section>
 
-    <section class="instruction-block" aria-live="assertive">${data.question.instruction}</section>
+    <section class="instruction-block" aria-live="assertive">${data.question.questionTemplate}</section>
 
     <section class="interactive-block" aria-live="polite">${getAnswerTemplate(data)}</section>
 
     <section class="result-block" aria-live="assertive">${resultTemplate(data)}</section>
+
+    <section class="heading-block heading" aria-live="off">${headingTemplate()}</section>
 
     <section class="controls-block">${controlsTemplate()}</section>
   `;

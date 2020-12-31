@@ -1,5 +1,5 @@
 import { ANSWER_MODEL, QUESTION_MODEL, RESULT_MODEL, STATE_MODEL } from './constants';
-import { updateQuiz } from './update';
+import { questionChange, updateQuiz } from './update';
 
 export function updateFromModel(model, modelProp) {
   console.debug('update', model.name, modelProp);
@@ -16,7 +16,12 @@ export function updateFromModel(model, modelProp) {
   }
 
   if (model.name === STATE_MODEL) {
-    if (['currentQuestion', 'questions', 'answers', 'results', 'totalQuestions'].indexOf(modelProp) >= 0) {
+    if (['currentQuestion', 'started'].indexOf(modelProp) >= 0) {
+      questionChange();
+      return;      
+    }
+
+    if (['quizzesGenerated', 'ready', 'questions', 'answers', 'results', 'totalQuestions'].indexOf(modelProp) >= 0) {
       updateQuiz();
       return;
     }

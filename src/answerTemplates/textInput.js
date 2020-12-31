@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import { ENTER_KEYCODE } from '../constants';
 import { interactiveShape } from '../models';
-import { nextQuestion } from '../navigation';
+import { nextQuestion, readQuestion } from '../navigation';
 import { state } from '../state';
 
 
@@ -32,5 +32,6 @@ export default function (data = interactiveShape) {
         @change=${setAnswer}
       />
     </label>
+    <button @click=${readQuestion}>Read Question</button>
   `;
 }

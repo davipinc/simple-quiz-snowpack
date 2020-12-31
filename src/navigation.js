@@ -1,4 +1,5 @@
-import { state, resetState } from './state';
+import { speakNow } from './speech';
+import { state, resetState, newQuestions, getCurrentQuestion } from './state';
 
 export function prevQuestion() {
   if (state.currentQuestion === 0) {
@@ -23,4 +24,20 @@ export function reset() {
     return;
   }
   resetState();
+}
+
+export function newQuiz() {
+  if (!confirm('Are you sure you want to try a new quiz?')) {
+    return;
+  }
+  newQuestions();
+}
+
+export function readQuestion() {
+  if (!state.ready) return;
+
+  const question = getCurrentQuestion();
+
+  const phrasing = question.instructionsText;
+  speakNow(phrasing);
 }

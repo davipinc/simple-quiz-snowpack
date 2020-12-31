@@ -1,4 +1,4 @@
-import loadedQuestions from './questionGenerators/spellingQuestions';
+import getQuestions from './questionGenerators/spellingQuestions';
 import state from './state';
 import { answerModel, questionModel, resultModel } from './models';
 
@@ -19,7 +19,8 @@ export function resetResults() {
 }
 
 export function importQuestions() {
-  state.questions = loadedQuestions.map((question) => {
+  state.quizzesGenerated += 1;
+  state.questions = getQuestions().map((question) => {
     return questionModel(question);
   });
 

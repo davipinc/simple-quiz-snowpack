@@ -2,7 +2,7 @@ import spellWord from '../questionTemplates/spellWord';
 import textImports from '../textImports';
 import { shuffleArray } from '../utils';
 
-const maxQuestions = 20;
+const defaultMaxQuestions = 20;
 
 function noComments(line) {
   const check = line.trim();
@@ -23,7 +23,9 @@ function removeVariants(word) {
 
 const words = textImports.year3to4.split('\n').filter(noComments).filter(onlyWords).map(removeVariants);
 
-const shuffledWords = shuffleArray(words);
-const questions = shuffledWords.slice(0, maxQuestions).map(spellWord);
+const getQuestions = (maxQuestions = 20) => {
+  const shuffledWords = shuffleArray(words);
+  return shuffledWords.slice(0, maxQuestions).map(spellWord);
+}
 
-export default questions;
+export default getQuestions;

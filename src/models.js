@@ -56,7 +56,8 @@ export function getReadOnlyModel(modelName, defaultState) {
 export function questionModel(
   question = {
     id: '',
-    instruction: html`<!-- empty -->`,
+    instructionsText: '',
+    questionTemplate: html`<!-- empty -->`,
     questionType: Symbol('unknown-question-type'),
     answerType: Symbol('unknown-answer-type'),
     answers: []

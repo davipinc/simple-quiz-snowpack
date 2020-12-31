@@ -1,10 +1,10 @@
 import { html } from 'lit-html';
 import { TEXT_INPUT, SPELL_WORD_QUESTION } from '../constants';
-import { speak } from '../speech';
+import { speakNow } from '../speech';
 
 const spellQuestion = (word) => {
   function readOutWord() {
-    speak(word);
+    speakNow(word);
   }
 
   function blockAnchor(event) {
@@ -12,12 +12,13 @@ const spellQuestion = (word) => {
   }
 
   const phrasing = 'How do you spell';
-  const ariaInstruction = `${phrasing} ${word}?`;
+  const instructionsText = `${phrasing} ${word}?`;
+  // <a href="#" @click=${blockAnchor} class="question-phrasing aria-only" role="main" aria-live="polite">${instructionsText}</a>
+
   const instructionHtml = html`<div>
-    <a href="#" @click=${blockAnchor} class="aria-only" role="main" aria-live="polite">${ariaInstruction}</a>
     <div aria-hidden="true">
       <span class="phrasing">${phrasing}</span>
-      <input
+      <input aria-hidden="true"
         type="button"
         @click=${readOutWord}
         data-speak="${word}"
@@ -30,7 +31,8 @@ const spellQuestion = (word) => {
 
   return {
     id: word,
-    instruction: html`<p>${instructionHtml}</p>`,
+    questionTemplate: html`<p>${instructionHtml}</p>`,
+    instructionsText,
     questionType: SPELL_WORD_QUESTION,
     answerType: TEXT_INPUT,
     answers: [word],
