@@ -18,9 +18,9 @@ function getAnswerTemplate(data = interactiveShape) {
 
 export default (data = interactiveShape) => {
   return html`
-    <section class="heading-block heading">${headingTemplate()}</section>
+    <section class="heading-block heading" aria-live="polite">${headingTemplate()}</section>
 
-    <section class="instruction-block" aria-live="polite">${data.question.instruction}</section>
+    <section class="instruction-block" aria-live="assertive">${data.question.instruction}</section>
 
     <section class="interactive-block" aria-live="polite">${getAnswerTemplate(data)}</section>
 
