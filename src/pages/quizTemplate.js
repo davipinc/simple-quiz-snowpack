@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import { interactiveShape } from '../models';
 
 import headingTemplate from '../panels/headingTemplate';
+import resultTemplate from '../panels/resultTemplate';
 import textInput from '../answerTemplates/textInput';
 import controlsTemplate from '../panels/controlsTemplate';
 import { TEXT_INPUT } from '../constants';
@@ -23,6 +24,8 @@ export default (data = interactiveShape) => {
     <section class="instruction-block" aria-live="assertive">${data.question.instruction}</section>
 
     <section class="interactive-block" aria-live="polite">${getAnswerTemplate(data)}</section>
+
+    <section class="result-block" aria-live="assertive">${resultTemplate(data)}</section>
 
     <section class="controls-block">${controlsTemplate()}</section>
   `;

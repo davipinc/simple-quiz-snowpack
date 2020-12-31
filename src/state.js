@@ -6,7 +6,8 @@ export const initialState = {
   currentQuestion: 0,
 
   questions: [],
-  answers: []
+  answers: [],
+  results: []
 };
 
 export const state = getModel(STATE_MODEL, initialState);

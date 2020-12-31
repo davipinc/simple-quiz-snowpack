@@ -1,4 +1,4 @@
-import { ANSWER_MODEL, QUESTION_MODEL, STATE_MODEL } from './constants';
+import { ANSWER_MODEL, QUESTION_MODEL, RESULT_MODEL, STATE_MODEL } from './constants';
 import { updateQuiz } from './update';
 
 export function updateFromModel(model, modelProp) {
@@ -9,13 +9,19 @@ export function updateFromModel(model, modelProp) {
     return;
   }
 
+  if (model.name === RESULT_MODEL) {
+    updateQuiz();
+    // TODO: add results template 
+    return;
+  }
+
   if (model.name === STATE_MODEL) {
-    if (['currentQuestion', 'questions', 'answers', 'totalQuestions'].indexOf(modelProp) >= 0) {
+    if (['currentQuestion', 'questions', 'answers', 'results', 'totalQuestions'].indexOf(modelProp) >= 0) {
       updateQuiz();
       return;
     }
 
-    console.warn('Not sure what to render');
+    console.warn(`Not sure what to render - MODEL: ${String(model.name)} PROP: ${modelProp}`);
     return;
   }
 

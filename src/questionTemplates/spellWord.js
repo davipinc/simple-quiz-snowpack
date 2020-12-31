@@ -33,7 +33,8 @@ const spellQuestion = (word) => {
     instruction: html`<p>${instructionHtml}</p>`,
     questionType: SPELL_WORD_QUESTION,
     answerType: TEXT_INPUT,
-    answers: [word]
+    answers: [word],
+    checkCase: false
   };
 };
 

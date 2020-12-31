@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { ANSWER_MODEL, QUESTION_MODEL } from './constants';
+import { ANSWER_MODEL, PENDING_ANSWER, QUESTION_MODEL, RESULT_MODEL } from './constants';
 import { updateFromModel } from './events';
 
 import { varType } from './utils';
@@ -75,6 +75,13 @@ export function answerModel(questionId) {
     get: function () {
       return questionId;
     }
+  });
+  return model;
+}
+
+export function resultModel() {
+  const model = getModel(RESULT_MODEL, {
+    score: PENDING_ANSWER
   });
   return model;
 }
