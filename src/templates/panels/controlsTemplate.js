@@ -1,13 +1,13 @@
 import { html } from 'lit-html';
 import { showResult } from '../../app/marking';
-import { nextQuestion, prevQuestion, reset, newQuiz } from '../../app/navigation';
+import { nextQuestion, prevQuestion, resetQuiz, newQuiz } from '../../app/navigation';
 
-export default function () {
+export default function controlsTemplate() {
   return html`
     <button @click=${showResult}>Check Answer</button>
     <button @click=${prevQuestion}>Back</button>
     <button @click=${nextQuestion}>Next</button>
-    <button @click=${reset}>Reset</button>
+    <button @click=${resetQuiz}>Reset</button>
     <button @click=${newQuiz}>New Quiz</button>
   `;
 }

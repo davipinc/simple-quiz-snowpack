@@ -1,11 +1,11 @@
-import { html, nothing } from 'lit-html';
+import { html } from 'lit-html';
 import { PENDING_ANSWER, RIGHT_ANSWER } from '../../app/constants';
-import { interactiveShape } from '../../standard/models';
+import { interactiveShape } from '../../core/models';
 
-export default function ( data = interactiveShape ) {
+export default function resultTemplate(data = interactiveShape) {
   const result = data.result.score;
   if (result === PENDING_ANSWER) {
-    return html`<div class='result-pending'></div>`;
+    return html`<div class="result-pending"></div>`;
   }
 
   const isCorrect = result === RIGHT_ANSWER;

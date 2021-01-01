@@ -7,18 +7,16 @@ const spellQuestion = (word) => {
     speakNow(word);
   }
 
-  function blockAnchor(event) {
-    event.preventDefault();
-  }
-
   const phrasing = 'How do you spell';
   const instructionsText = `${phrasing} ${word}?`;
-  // <a href="#" @click=${blockAnchor} class="question-phrasing aria-only" role="main" aria-live="polite">${instructionsText}</a>
+  // <a href="#" @click=${blockAnchor} class="question-phrasing aria-only"
+  // role="main" aria-live="polite">${instructionsText}</a>
 
   const instructionHtml = html`<div>
     <div aria-hidden="true">
       <span class="phrasing">${phrasing}</span>
-      <input aria-hidden="true"
+      <input
+        aria-hidden="true"
         type="button"
         @click=${readOutWord}
         data-speak="${word}"
@@ -27,7 +25,7 @@ const spellQuestion = (word) => {
         value="Word &#9654;"
       />
     </div>
-  </div>`;  
+  </div>`;
 
   return {
     id: word,

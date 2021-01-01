@@ -1,8 +1,6 @@
 import { html } from 'lit-html';
-import { startQuiz } from '../../app/core';
+import { startQuiz } from '../../app/main';
 
-export default function () {
-  return html`
-    <button @click=${startQuiz}>Start Quiz</button>
-  `;
+export default function startPageTemplate() {
+  return html` <button @click=${startQuiz}>Start Quiz</button> `;
 }

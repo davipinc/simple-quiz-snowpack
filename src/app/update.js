@@ -37,12 +37,11 @@ export default function update() {
       answer,
       result
     };
-  
+
     render(quizTemplate(data), getAppNode());
     return;
   }
 
   // finished
   render(summaryTemplate(), getAppNode());
-
 }

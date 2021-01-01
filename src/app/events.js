@@ -12,7 +12,7 @@ export function updateFromModel(model, modelProp) {
 
   if (model.name === RESULT_MODEL) {
     update();
-    // TODO: add results template 
+    // TODO: add results template
     return;
   }
 
@@ -23,7 +23,11 @@ export function updateFromModel(model, modelProp) {
       return;
     }
 
-    if (['quizzesGenerated', 'ready', 'questions', 'answers', 'results', 'totalQuestions', 'finished'].indexOf(modelProp) >= 0) {
+    if (
+      ['quizzesGenerated', 'ready', 'questions', 'answers', 'results', 'totalQuestions', 'finished'].indexOf(
+        modelProp
+      ) >= 0
+    ) {
       update();
       return;
     }

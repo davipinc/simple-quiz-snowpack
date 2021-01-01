@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { interactiveShape } from '../../standard/models';
+import { interactiveShape } from '../../core/models';
 
 import headingTemplate from '../panels/headingTemplate';
 import resultTemplate from '../panels/resultTemplate';
@@ -19,7 +19,6 @@ function getAnswerTemplate(data = interactiveShape) {
 
 export default (data = interactiveShape) => {
   return html`
-
     <section class="instruction-block" aria-live="assertive">${data.question.questionTemplate}</section>
 
     <section class="interactive-block" aria-live="polite">${getAnswerTemplate(data)}</section>

@@ -1,8 +1,8 @@
-import { html } from "lit-html";
-import { QUESTION_MODEL } from "../app/constants";
-import { getReadOnlyModel } from "../standard/models";
+import { html } from 'lit-html';
+import { QUESTION_MODEL } from '../app/constants';
+import { getReadOnlyModel } from '../core/models';
 
-export function questionModel(
+export default function questionModel(
   question = {
     id: '',
     instructionsText: '',

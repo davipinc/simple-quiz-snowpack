@@ -14,7 +14,7 @@ export function getModel(modelName = Symbol('whatever'), defaultState = {}, opti
   });
 
   Object.defineProperty(model, 'name', {
-    get: function () {
+    get: function get() {
       return modelName;
     }
   });
@@ -24,10 +24,10 @@ export function getModel(modelName = Symbol('whatever'), defaultState = {}, opti
     const initialType = varType(defaultState[key]);
     const propName = `${prefix}${key}`;
     Object.defineProperty(model, key, {
-      get: function () {
+      get: function get() {
         return this[propName];
       },
-      set: function (value) {
+      set: function set(value) {
         if (options.readOnly) {
           throw new Error(`${String(modelName)} is read-only`);
         }
@@ -39,7 +39,6 @@ export function getModel(modelName = Symbol('whatever'), defaultState = {}, opti
 
         this[propName] = value;
         updateFromModel(model, key);
-        return;
       }
     });
   });

@@ -1,6 +1,6 @@
 import { speakNow } from '../utils/speech';
-import { state, resetState } from './state';
-import { getCurrentQuestion, newQuestions } from './core';
+import { state } from './state';
+import { getCurrentQuestion, newQuestions, reset } from './main';
 
 export function prevQuestion() {
   if (state.currentQuestion === 0) {
@@ -20,11 +20,11 @@ export function nextQuestion() {
   state.currentQuestion += 1;
 }
 
-export function reset() {
+export function resetQuiz() {
   if (!confirm('Are you sure you want to reset?')) {
     return;
   }
-  resetState();
+  reset();
 }
 
 export function newQuiz() {
