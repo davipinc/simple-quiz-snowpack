@@ -32,7 +32,6 @@ export function resetResults() {
 }
 
 export function importQuestions() {
-  state.quizzesGenerated += 1;
   state.questions = getQuestions().map((question) => {
     return questionModel(question);
   });

@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import { ENTER_KEYCODE } from '../../app/constants';
 import { interactiveShape } from '../../core/models';
-import { nextQuestion, readQuestion } from '../../app/navigation';
+import { nextQuestion, readQuestion } from '../../app/interactions';
 import { state } from '../../app/state';
 
 function setAnswer(event) {

@@ -8,8 +8,7 @@ export const initialState = {
   results: [],
   ready: false,
   started: false,
-  finished: false,
-  quizzesGenerated: 0
+  finished: false
 };
 
 export const state = getModel(STATE_MODEL, initialState);

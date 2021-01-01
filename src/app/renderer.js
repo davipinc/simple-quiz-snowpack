@@ -11,27 +11,23 @@ function getAppNode() {
   return document.querySelectorAll(options.selector)[0];
 }
 
-// function getSelectedNode(selector) {
-//   return document.querySelectorAll(options.selector + ' ' + selector)[0];
-// }
-
-export default function update() {
-  const { currentQuestion, questions, answers, results, ready, started, finished } = state;
-  const question = questions[currentQuestion];
-  const answer = answers[currentQuestion];
-  const result = results[currentQuestion];
-
-  if (!ready) {
+export default function renderer() {
+  if (!state.ready) {
     render(loadingTemplate(), getAppNode());
     return;
   }
 
-  if (!started) {
+  if (!state.started) {
     render(startPageTemplate(), getAppNode());
     return;
   }
 
-  if (!finished) {
+  if (!state.finished) {
+    const { currentQuestion, questions, answers, results } = state;
+    const question = questions[currentQuestion];
+    const answer = answers[currentQuestion];
+    const result = results[currentQuestion];
+
     const data = {
       question,
       answer,

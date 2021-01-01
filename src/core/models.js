@@ -1,8 +1,30 @@
-import { updateFromModel } from '../app/events';
+import hooks from '../app/hooks';
+import update from '../app/renderer';
 
 import { varType } from './variables';
 
 export const interactiveShape = { question: {}, answer: {} };
+
+function iterateEffect(updateTarget, fireProp = '') {
+  Object.keys(hooks).forEach((effectName) => {
+    const effect = hooks[effectName];
+    const hasThisFunction = typeof effect[fireProp] === 'function';
+    if (effect.matches.indexOf(updateTarget) >= 0 && hasThisFunction) {
+      console.debug(effectName);
+      effect[fireProp]();
+    }
+  });
+}
+
+function updateFromModel(updateTarget, details = {}) {
+  console.group(updateTarget);
+  console.debug(details);
+  console.groupEnd();
+
+  iterateEffect(updateTarget, 'beforeUpdate');
+  update();
+  iterateEffect(updateTarget, 'afterUpdate');
+}
 
 export function getModel(modelName = 'whatever', defaultState = {}, options = { readOnly: false }) {
   const model = {};
@@ -37,8 +59,13 @@ export function getModel(modelName = 'whatever', defaultState = {}, options = { 
           throw new Error(`Will not coerce type of ${key} from ${initialType} to ${type}`);
         }
 
+        const oldValue = this[propName];
+
         this[propName] = value;
-        updateFromModel(model, key);
+
+        const updateTarget = `${model.name}::${key}`;
+
+        updateFromModel(updateTarget, { model, property: key, old: oldValue, new: value });
       }
     });
   });
