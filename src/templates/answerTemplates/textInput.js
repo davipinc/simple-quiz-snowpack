@@ -1,8 +1,8 @@
 import { html } from 'lit-html';
-import { ENTER_KEYCODE } from '../constants';
-import { interactiveShape } from '../models';
-import { nextQuestion, readQuestion } from '../navigation';
-import { state } from '../state';
+import { ENTER_KEYCODE } from '../../app/constants';
+import { interactiveShape } from '../../standard/models';
+import { nextQuestion, readQuestion } from '../../app/navigation';
+import { state } from '../../app/state';
 
 
 function setAnswer(event) {

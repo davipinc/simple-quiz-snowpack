@@ -1,8 +1,6 @@
-import { html } from 'lit-html';
-import { ANSWER_MODEL, PENDING_ANSWER, QUESTION_MODEL, RESULT_MODEL } from './constants';
-import { updateFromModel } from './events';
+import { updateFromModel } from '../app/events';
 
-import { varType } from './utils';
+import { varType } from '../utils/variables';
 
 export const interactiveShape = { question: {}, answer: {} };
 
@@ -51,38 +49,4 @@ export function getModel(modelName = Symbol('whatever'), defaultState = {}, opti
 
 export function getReadOnlyModel(modelName, defaultState) {
   return getModel(modelName, defaultState, { readOnly: false });
-}
-
-export function questionModel(
-  question = {
-    id: '',
-    instructionsText: '',
-    questionTemplate: html`<!-- empty -->`,
-    questionType: Symbol('unknown-question-type'),
-    answerType: Symbol('unknown-answer-type'),
-    answers: []
-  }
-) {
-  const model = getReadOnlyModel(QUESTION_MODEL, question);
-
-  return model;
-}
-
-export function answerModel(questionId) {
-  const model = getModel(ANSWER_MODEL, {
-    text: ''
-  });
-  Object.defineProperty(model, 'questionId', {
-    get: function () {
-      return questionId;
-    }
-  });
-  return model;
-}
-
-export function resultModel() {
-  const model = getModel(RESULT_MODEL, {
-    score: PENDING_ANSWER
-  });
-  return model;
 }

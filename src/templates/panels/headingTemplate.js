@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { state } from '../state';
+import { state } from '../../app/state';
 
 export default function () {
   const headingText = `${state.currentQuestion + 1} of ${state.totalQuestions}`;

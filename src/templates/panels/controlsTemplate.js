@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
-import { showResult } from '../marking';
-import { nextQuestion, prevQuestion, reset, newQuiz, readQuestion } from '../navigation';
+import { showResult } from '../../app/marking';
+import { nextQuestion, prevQuestion, reset, newQuiz } from '../../app/navigation';
 
 export default function () {
   return html`

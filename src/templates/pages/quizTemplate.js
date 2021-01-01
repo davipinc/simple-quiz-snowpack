@@ -1,11 +1,11 @@
 import { html } from 'lit-html';
-import { interactiveShape } from '../models';
+import { interactiveShape } from '../../standard/models';
 
 import headingTemplate from '../panels/headingTemplate';
 import resultTemplate from '../panels/resultTemplate';
 import textInput from '../answerTemplates/textInput';
 import controlsTemplate from '../panels/controlsTemplate';
-import { TEXT_INPUT } from '../constants';
+import { TEXT_INPUT } from '../../app/constants';
 
 function getAnswerTemplate(data = interactiveShape) {
   const answerType = data.question.answerType;

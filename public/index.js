@@ -1,7 +1,7 @@
-import { quiz } from '../src/quiz';
+import app from '../src/app/core';
 
 const options = {
   selector: '#app'
 };
 
-quiz(options);
+app(options);

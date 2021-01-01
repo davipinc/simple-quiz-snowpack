@@ -1,5 +1,5 @@
-import { importQuestions } from './setup';
-import { getModel } from './models';
+import { importQuestions } from './core';
+import { getModel } from '../standard/models';
 import { STATE_MODEL } from './constants';
 
 export const initialState = {
@@ -10,6 +10,7 @@ export const initialState = {
   results: [],
   ready: false,
   started: false,
+  finished: false,
   quizzesGenerated: 0
 };
 
@@ -32,23 +33,9 @@ export function initialiseState() {
   state.ready = true;
 }
 
-export function startQuiz() {
-  state.started = true;
-}
-
 export function resetState() {
   console.debug('resetState');
   initialiseState();
-}
-
-export function newQuestions() {
-  resetState();
-  importQuestions();
-}
-
-export function getCurrentQuestion() {
-  const { questions, currentQuestion } = state;
-  return questions[currentQuestion];  
 }
 
 export default state;

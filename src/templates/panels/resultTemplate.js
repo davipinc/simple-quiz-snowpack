@@ -1,6 +1,6 @@
 import { html, nothing } from 'lit-html';
-import { PENDING_ANSWER, RIGHT_ANSWER } from '../constants';
-import { interactiveShape } from '../models';
+import { PENDING_ANSWER, RIGHT_ANSWER } from '../../app/constants';
+import { interactiveShape } from '../../standard/models';
 
 export default function ( data = interactiveShape ) {
   const result = data.result.score;

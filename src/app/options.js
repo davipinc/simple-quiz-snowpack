@@ -1,6 +1,7 @@
 const defaultOptions = { selector: '#something' };
 const options = {};
 
+// TODO: make into a model 
 export function setOptions(customOptions = defaultOptions) {
   Object.keys(customOptions).forEach((key) => {
     const isDefault = options[key] !== defaultOptions[key];

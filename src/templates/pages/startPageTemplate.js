@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { startQuiz } from '../state';
+import { startQuiz } from '../../app/core';
 
 export default function () {
   return html`

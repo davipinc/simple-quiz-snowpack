@@ -1,5 +1,6 @@
-import { speakNow } from './speech';
-import { state, resetState, newQuestions, getCurrentQuestion } from './state';
+import { speakNow } from '../utils/speech';
+import { state, resetState } from './state';
+import { getCurrentQuestion, newQuestions } from './core';
 
 export function prevQuestion() {
   if (state.currentQuestion === 0) {

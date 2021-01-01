@@ -1,6 +1,6 @@
-import spellWord from '../questionTemplates/spellWord';
-import textImports from '../textImports';
-import { shuffleArray } from '../utils';
+import spellWord from '../templates/questionTemplates/spellWord';
+import textImports from '../loaders';
+import { shuffleArray } from '../utils/arrays';
 
 const defaultMaxQuestions = 20;
 
@@ -23,7 +23,7 @@ function removeVariants(word) {
 
 const words = textImports.year3to4.split('\n').filter(noComments).filter(onlyWords).map(removeVariants);
 
-const getQuestions = (maxQuestions = 20) => {
+const getQuestions = (maxQuestions = defaultMaxQuestions) => {
   const shuffledWords = shuffleArray(words);
   return shuffledWords.slice(0, maxQuestions).map(spellWord);
 }
