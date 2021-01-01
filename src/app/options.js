@@ -1,19 +1,10 @@
-const defaultOptions = { selector: '#something' };
-const options = {};
+import { getModel } from '../core/models';
+import { OPTIONS_MODEL } from './constants';
 
-// TODO: make into a model
-export function setOptions(customOptions = defaultOptions) {
-  Object.keys(customOptions).forEach((key) => {
-    const isDefault = options[key] !== defaultOptions[key];
-    const optionExists = defaultOptions[key] !== undefined;
+export const defaultOptions = {
+  selector: '#something'
+};
 
-    if (optionExists) {
-      console.debug(`${isDefault ? 'Default' : 'Custom'} option '${key}':`, customOptions[key]);
-      options[key] = customOptions[key];
-    } else {
-      console.warn(`Non-existent option '${key}'`);
-    }
-  });
-}
+export const options = getModel(OPTIONS_MODEL, defaultOptions);
 
 export default options;

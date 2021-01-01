@@ -1,9 +1,10 @@
 import state, { initialState } from './state';
-import { setOptions } from './options';
 import getQuestions from '../data/questions/getSpellingQuestions';
 import answerModel from '../models/answerModel';
 import resultModel from '../models/resultModel';
 import questionModel from '../models/questionModel';
+import { updateModel } from '../core/models';
+import { options } from './options';
 
 export function startQuiz() {
   state.started = true;
@@ -41,12 +42,9 @@ export function importQuestions() {
 }
 
 export function reset() {
+  console.debug('reset');
   state.ready = false;
-  console.debug('initialiseState');
-  Object.keys(initialState).forEach((key) => {
-    state[key] = initialState[key];
-  });
-
+  updateModel(state, initialState);
   importQuestions();
   state.ready = true;
 }
@@ -56,7 +54,12 @@ export function newQuestions() {
   importQuestions();
 }
 
-export default function main(options = { selector: '' }) {
-  setOptions(options);
+export default function main(customOptions = {}) {
+  updateModel(options, customOptions);
   reset();
+
+  return {
+    options,
+    state
+  };
 }

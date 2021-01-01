@@ -1,5 +1,5 @@
 import { readQuestion } from './navigation';
-import { ANSWER_MODEL, QUESTION_MODEL, RESULT_MODEL, STATE_MODEL } from './constants';
+import { ANSWER_MODEL, OPTIONS_MODEL, QUESTION_MODEL, RESULT_MODEL, STATE_MODEL } from './constants';
 import update from './update';
 
 export function updateFromModel(model, modelProp) {
@@ -36,5 +36,10 @@ export function updateFromModel(model, modelProp) {
     return;
   }
 
-  throw new Error('Unhandled model update type');
+  if (model.name === OPTIONS_MODEL) {
+    update();
+    return;
+  }
+
+  throw new Error(`Unhandled model update type: ${String(model.name)}`);
 }

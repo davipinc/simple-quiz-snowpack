@@ -49,3 +49,20 @@ export function getModel(modelName = Symbol('whatever'), defaultState = {}, opti
 export function getReadOnlyModel(modelName, defaultState) {
   return getModel(modelName, defaultState, { readOnly: false });
 }
+
+export function updateModel(obj = {}, customObject = {}) {
+  Object.keys(customObject).forEach((key) => {
+    const isChanged = obj[key] !== customObject[key];
+    const propertyExists = obj[key] !== undefined;
+
+    if (!propertyExists) {
+      throw new Error(`Non-existent parameter '${key}' on ${String(obj.name)}`);
+    }
+
+    if (isChanged) {
+      console.debug('Modified prop', key);
+    }
+    // eslint-disable-next-line no-param-reassign
+    obj[key] = customObject[key];
+  });
+}

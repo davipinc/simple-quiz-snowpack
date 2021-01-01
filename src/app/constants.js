@@ -6,6 +6,7 @@ export const QUESTION_MODEL = Symbol('question');
 export const ANSWER_MODEL = Symbol('answer');
 export const STATE_MODEL = Symbol('state');
 export const RESULT_MODEL = Symbol('result');
+export const OPTIONS_MODEL = Symbol('options');
 
 export const RIGHT_ANSWER = 1;
 export const WRONG_ANSWER = 0;

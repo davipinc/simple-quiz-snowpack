@@ -1,11 +1,11 @@
 import { render } from 'lit-html';
 import state from './state';
-import options from './options';
 
 import quizTemplate from '../templates/pages/quizTemplate';
 import summaryTemplate from '../templates/pages/summaryTemplate';
 import loadingTemplate from '../templates/pages/loadingTemplate';
 import startPageTemplate from '../templates/pages/startPageTemplate';
+import options from './options';
 
 function getAppNode() {
   return document.querySelectorAll(options.selector)[0];

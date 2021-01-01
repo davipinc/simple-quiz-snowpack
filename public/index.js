@@ -4,4 +4,6 @@ const options = {
   selector: '#app'
 };
 
-app(options);
+const myApp = app(options);
+
+window.QUIZ = myApp.state; // for debug only
