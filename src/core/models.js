@@ -4,7 +4,7 @@ import { varType } from './variables';
 
 export const interactiveShape = { question: {}, answer: {} };
 
-export function getModel(modelName = Symbol('whatever'), defaultState = {}, options = { readOnly: false }) {
+export function getModel(modelName = 'whatever', defaultState = {}, options = { readOnly: false }) {
   const model = {};
   const prefix = '_';
 
@@ -29,7 +29,7 @@ export function getModel(modelName = Symbol('whatever'), defaultState = {}, opti
       },
       set: function set(value) {
         if (options.readOnly) {
-          throw new Error(`${String(modelName)} is read-only`);
+          throw new Error(`${modelName} is read-only`);
         }
         const type = varType(value);
 
@@ -56,7 +56,7 @@ export function updateModel(obj = {}, customObject = {}) {
     const propertyExists = obj[key] !== undefined;
 
     if (!propertyExists) {
-      throw new Error(`Non-existent parameter '${key}' on ${String(obj.name)}`);
+      throw new Error(`Non-existent parameter '${key}' on ${obj.name}`);
     }
 
     if (isChanged) {

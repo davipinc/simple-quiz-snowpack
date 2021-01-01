@@ -7,8 +7,8 @@ export default function questionModel(
     id: '',
     instructionsText: '',
     questionTemplate: html`<!-- empty -->`,
-    questionType: Symbol('unknown-question-type'),
-    answerType: Symbol('unknown-answer-type'),
+    questionType: 'unknown-question-type',
+    answerType: 'unknown-answer-type',
     answers: []
   }
 ) {

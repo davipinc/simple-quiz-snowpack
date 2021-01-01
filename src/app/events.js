@@ -4,7 +4,7 @@ import update from './update';
 
 export function updateFromModel(model, modelProp) {
   console.debug('update', model.name, modelProp);
-  console.log(`${String(model.name)}:${modelProp}`);
+  console.log(`${model.name}:${modelProp}`);
 
   if (model.name === ANSWER_MODEL || model.name === QUESTION_MODEL) {
     update();
@@ -33,7 +33,7 @@ export function updateFromModel(model, modelProp) {
       return;
     }
 
-    console.warn(`Not sure what to render - MODEL: ${String(model.name)} PROP: ${modelProp}`);
+    console.warn(`Not sure what to render - MODEL: ${model.name} PROP: ${modelProp}`);
     return;
   }
 
@@ -42,5 +42,5 @@ export function updateFromModel(model, modelProp) {
     return;
   }
 
-  throw new Error(`Unhandled model update type: ${String(model.name)}`);
+  throw new Error(`Unhandled model update type: ${model.name}`);
 }
