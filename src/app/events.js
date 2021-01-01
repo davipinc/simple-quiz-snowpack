@@ -4,6 +4,7 @@ import update from './update';
 
 export function updateFromModel(model, modelProp) {
   console.debug('update', model.name, modelProp);
+  console.log(`${String(model.name)}:${modelProp}`);
 
   if (model.name === ANSWER_MODEL || model.name === QUESTION_MODEL) {
     update();

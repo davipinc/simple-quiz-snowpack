@@ -1,4 +1,4 @@
-import { speakNow } from '../utils/speech';
+import { speakNow } from '../core/speech';
 import { state } from './state';
 import { getCurrentQuestion, newQuestions, reset } from './main';
 

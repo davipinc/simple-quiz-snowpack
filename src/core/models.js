@@ -1,6 +1,6 @@
 import { updateFromModel } from '../app/events';
 
-import { varType } from '../utils/variables';
+import { varType } from './variables';
 
 export const interactiveShape = { question: {}, answer: {} };
 

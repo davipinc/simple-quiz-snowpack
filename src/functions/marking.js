@@ -1,5 +1,5 @@
-import { RIGHT_ANSWER, WRONG_ANSWER } from './constants';
-import { state } from './state';
+import { RIGHT_ANSWER, WRONG_ANSWER } from '../app/constants';
+import { state } from '../app/state';
 
 export function checkCurrentAnswer() {
   const { currentQuestion, questions, answers } = state;

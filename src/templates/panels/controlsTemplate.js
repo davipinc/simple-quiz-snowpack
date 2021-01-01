@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { showResult } from '../../app/marking';
+import { showResult } from '../../functions/marking';
 import { nextQuestion, prevQuestion, resetQuiz, newQuiz } from '../../app/navigation';
 
 export default function controlsTemplate() {

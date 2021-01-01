@@ -1,5 +1,5 @@
 import spellWord from '../../templates/questionTemplates/spellWord';
-import { shuffleArray } from '../../utils/arrays';
+import { shuffleArray } from '../../core/arrays';
 import year3to4 from '../../content/spellings/year3to4/getSpellings';
 
 const textImports = {

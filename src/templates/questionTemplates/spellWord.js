@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { TEXT_INPUT, SPELL_WORD_QUESTION } from '../../app/constants';
-import { speakNow } from '../../utils/speech';
+import { speakNow } from '../../core/speech';
 
 const spellQuestion = (word) => {
   function readOutWord() {
