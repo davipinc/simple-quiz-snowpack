@@ -7,8 +7,7 @@ export const initialState = {
   answers: [],
   results: [],
   ready: false,
-  started: false,
-  finished: false
+  currentPage: 'splash'
 };
 
 export const state = getModel(STATE_MODEL, initialState);
@@ -16,6 +15,23 @@ export const state = getModel(STATE_MODEL, initialState);
 Object.defineProperty(state, 'totalQuestions', {
   get: () => {
     return state.questions.length;
+  }
+});
+
+Object.defineProperty(state, 'currentQuestionData', {
+  get: () => {
+    const { currentQuestion, questions, answers, results } = state;
+    const question = questions[currentQuestion];
+    const answer = answers[currentQuestion];
+    const result = results[currentQuestion];
+
+    const data = {
+      question,
+      answer,
+      result
+    };
+
+    return data;
   }
 });
 

@@ -3,8 +3,6 @@ import update from '../app/renderer';
 
 import { varType } from './variables';
 
-export const interactiveShape = { question: {}, answer: {} };
-
 function iterateEffect(updateTarget, fireProp = '') {
   Object.keys(hooks).forEach((effectName) => {
     const effect = hooks[effectName];

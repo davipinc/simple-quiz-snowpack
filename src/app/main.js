@@ -7,7 +7,7 @@ import { updateModel } from '../core/models';
 import { options } from './options';
 
 export function startQuiz() {
-  state.started = true;
+  state.currentPage = 'quiz';
 }
 
 export function getCurrentQuestion() {

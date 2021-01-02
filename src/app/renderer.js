@@ -5,39 +5,32 @@ import quizTemplate from '../templates/pages/quizTemplate';
 import summaryTemplate from '../templates/pages/summaryTemplate';
 import loadingTemplate from '../templates/pages/loadingTemplate';
 import startPageTemplate from '../templates/pages/startPageTemplate';
+import errorPageTemplate from '../templates/pages/errorPageTemplate';
 import options from './options';
 
 function getAppNode() {
   return document.querySelectorAll(options.selector)[0];
 }
 
+function renderApp(template) {
+  const app = getAppNode();
+  render(template, app);
+  return app;
+}
+
 export default function renderer() {
   if (!state.ready) {
-    render(loadingTemplate(), getAppNode());
-    return;
+    return renderApp(loadingTemplate());
   }
 
-  if (!state.started) {
-    render(startPageTemplate(), getAppNode());
-    return;
+  switch (state.currentPage) {
+    case 'splash':
+      return renderApp(startPageTemplate());
+    case 'quiz':
+      return renderApp(quizTemplate());
+    case 'summary':
+      return renderApp(summaryTemplate());
+    default:
+      return renderApp(errorPageTemplate());
   }
-
-  if (!state.finished) {
-    const { currentQuestion, questions, answers, results } = state;
-    const question = questions[currentQuestion];
-    const answer = answers[currentQuestion];
-    const result = results[currentQuestion];
-
-    const data = {
-      question,
-      answer,
-      result
-    };
-
-    render(quizTemplate(data), getAppNode());
-    return;
-  }
-
-  // finished
-  render(summaryTemplate(), getAppNode());
 }

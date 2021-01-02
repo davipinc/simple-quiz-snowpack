@@ -1,9 +1,9 @@
 import { html } from 'lit-html';
 import { PENDING_ANSWER, RIGHT_ANSWER } from '../../app/constants';
-import { interactiveShape } from '../../core/models';
+import state from '../../app/state';
 
-export default function resultTemplate(data = interactiveShape) {
-  const result = data.result.score;
+export default function resultTemplate() {
+  const result = state.currentQuestionData.result.score;
   if (result === PENDING_ANSWER) {
     return html`<div class="result-pending"></div>`;
   }
