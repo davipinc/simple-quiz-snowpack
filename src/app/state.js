@@ -1,4 +1,4 @@
-import { model, modelArray } from '../core/models';
+import { model } from '../core/models';
 import answerModel from '../models/answerModel';
 import questionModel from '../models/questionModel';
 import resultModel from '../models/resultModel';
@@ -6,9 +6,9 @@ import { STATE_MODEL } from './constants';
 
 export const initialState = {
   currentQuestion: 0,
-  questions: modelArray(questionModel, []),
-  answers: modelArray(answerModel, []),
-  results: modelArray(resultModel, []),
+  questions: questionModel.collection(),
+  answers: answerModel.collection(),
+  results: resultModel.collection(),
   ready: false,
   currentPage: 'splash'
 };

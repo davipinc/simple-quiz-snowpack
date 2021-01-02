@@ -1,7 +1,7 @@
 import { ANSWER_MODEL } from '../app/constants';
-import { model } from '../core/models';
+import { model, modelFactory } from '../core/models';
 
-export default function answerModel(question = { qid: '' }) {
+export default modelFactory((question = { qid: '' }) => {
   const { qid } = question;
   return model({
     name: ANSWER_MODEL,
@@ -12,4 +12,4 @@ export default function answerModel(question = { qid: '' }) {
     calculated: {},
     readOnly: false
   });
-}
+});

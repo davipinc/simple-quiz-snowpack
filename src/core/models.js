@@ -133,3 +133,11 @@ export function updateModel(obj = {}, customObject = {}) {
     obj[key] = customObject[key];
   });
 }
+
+export function modelFactory(func) {
+  // eslint-disable-next-line no-param-reassign
+  func.collection = (initialArray = []) => {
+    return modelArray(func, initialArray);
+  };
+  return func;
+}
