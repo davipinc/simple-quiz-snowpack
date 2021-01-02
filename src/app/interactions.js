@@ -3,7 +3,7 @@ import { state } from './state';
 import { getCurrentQuestion, newQuestions, reset } from './main';
 
 export function prevQuestion() {
-  if (state.currentQuestion === 0) {
+  if (state.viewingFirstQuestion) {
     alert('You are on the first question already');
     return;
   }
@@ -12,7 +12,7 @@ export function prevQuestion() {
 }
 
 export function nextQuestion() {
-  if (state.currentQuestion === state.totalQuestions - 1) {
+  if (state.viewingLastQuestion) {
     alert('You are on the last question already');
     return;
   }

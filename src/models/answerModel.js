@@ -1,14 +1,14 @@
 import { ANSWER_MODEL } from '../app/constants';
-import { getModel } from '../core/models';
+import { model } from '../core/models';
 
 export default function answerModel(questionId) {
-  const model = getModel(ANSWER_MODEL, {
-    text: ''
+  return model({
+    name: ANSWER_MODEL,
+    fields: {
+      text: '',
+      questionId
+    },
+    calculated: {},
+    readOnly: false
   });
-  Object.defineProperty(model, 'questionId', {
-    get: () => {
-      return questionId;
-    }
-  });
-  return model;
 }

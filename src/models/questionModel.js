@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { QUESTION_MODEL } from '../app/constants';
-import { getReadOnlyModel } from '../core/models';
+import { model } from '../core/models';
 
 export default function questionModel(
   question = {
@@ -12,7 +12,10 @@ export default function questionModel(
     answers: []
   }
 ) {
-  const model = getReadOnlyModel(QUESTION_MODEL, question);
-
-  return model;
+  return model({
+    name: QUESTION_MODEL,
+    fields: question,
+    calculated: {},
+    readOnly: true
+  });
 }

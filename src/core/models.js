@@ -24,32 +24,41 @@ function updateFromModel(updateTarget, details = {}) {
   iterateEffect(updateTarget, 'afterUpdate');
 }
 
-export function getModel(modelName = 'whatever', defaultState = {}, options = { readOnly: false }) {
-  const model = {};
+export function addCalculatedProps(obj, props = {}) {
+  Object.keys(props).forEach((propName) => {
+    Object.defineProperty(obj, propName, {
+      get: props[propName]
+    });
+  });
+}
+
+export function model(props = { name: '', fields: {}, calculated: {}, readOnly: false }) {
+  const { name, fields, calculated, readOnly } = props;
+  const obj = {};
   const prefix = '_';
 
   // { foo: 1, bar: "whatever"} => { _foo: 1, _bar: "whatever"}
-  Object.keys(defaultState).forEach((key) => {
-    model[`${prefix}${key}`] = defaultState[key];
+  Object.keys(fields).forEach((key) => {
+    obj[`${prefix}${key}`] = fields[key];
   });
 
-  Object.defineProperty(model, 'name', {
+  Object.defineProperty(obj, 'name', {
     get: function get() {
-      return modelName;
+      return name;
     }
   });
 
   // add getters and setters
-  Object.keys(defaultState).forEach((key) => {
-    const initialType = varType(defaultState[key]);
+  Object.keys(fields).forEach((key) => {
+    const initialType = varType(fields[key]);
     const propName = `${prefix}${key}`;
-    Object.defineProperty(model, key, {
+    Object.defineProperty(obj, key, {
       get: function get() {
         return this[propName];
       },
       set: function set(value) {
-        if (options.readOnly) {
-          throw new Error(`${modelName} is read-only`);
+        if (readOnly) {
+          throw new Error(`${name} is read-only`);
         }
         const type = varType(value);
 
@@ -61,18 +70,16 @@ export function getModel(modelName = 'whatever', defaultState = {}, options = { 
 
         this[propName] = value;
 
-        const updateTarget = `${model.name}::${key}`;
+        const updateTarget = `${obj.name}::${key}`;
 
-        updateFromModel(updateTarget, { model, property: key, old: oldValue, new: value });
+        updateFromModel(updateTarget, { model: obj, property: key, old: oldValue, new: value });
       }
     });
   });
 
-  return model;
-}
+  addCalculatedProps(obj, calculated);
 
-export function getReadOnlyModel(modelName, defaultState) {
-  return getModel(modelName, defaultState, { readOnly: false });
+  return obj;
 }
 
 export function updateModel(obj = {}, customObject = {}) {

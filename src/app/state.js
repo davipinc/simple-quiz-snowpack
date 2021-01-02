@@ -1,4 +1,4 @@
-import { getModel } from '../core/models';
+import { model } from '../core/models';
 import { STATE_MODEL } from './constants';
 
 export const initialState = {
@@ -10,29 +10,35 @@ export const initialState = {
   currentPage: 'splash'
 };
 
-export const state = getModel(STATE_MODEL, initialState);
+export const state = model({
+  name: STATE_MODEL,
+  fields: initialState,
+  calculated: {
+    totalQuestions() {
+      return this.questions.length;
+    },
+    currentQuestionData() {
+      const { currentQuestion, questions, answers, results } = this;
+      const question = questions[currentQuestion];
+      const answer = answers[currentQuestion];
+      const result = results[currentQuestion];
 
-Object.defineProperty(state, 'totalQuestions', {
-  get: () => {
-    return state.questions.length;
-  }
-});
+      const data = {
+        question,
+        answer,
+        result
+      };
 
-Object.defineProperty(state, 'currentQuestionData', {
-  get: () => {
-    const { currentQuestion, questions, answers, results } = state;
-    const question = questions[currentQuestion];
-    const answer = answers[currentQuestion];
-    const result = results[currentQuestion];
-
-    const data = {
-      question,
-      answer,
-      result
-    };
-
-    return data;
-  }
+      return data;
+    },
+    viewingFirstQuestion() {
+      return this.currentQuestion === 0;
+    },
+    viewingLastQuestion() {
+      return this.currentQuestion === this.totalQuestions - 1;
+    }
+  },
+  readOnly: false
 });
 
 export default state;

@@ -1,10 +1,10 @@
-import { getModel } from '../core/models';
+import { model } from '../core/models';
 import { OPTIONS_MODEL } from './constants';
 
 export const defaultOptions = {
   selector: '#something'
 };
 
-export const options = getModel(OPTIONS_MODEL, defaultOptions);
+export const options = model({ name: OPTIONS_MODEL, fields: defaultOptions, calculated: {}, readOnly: false });
 
 export default options;

@@ -1,9 +1,13 @@
 import { PENDING_ANSWER, RESULT_MODEL } from '../app/constants';
-import { getModel } from '../core/models';
+import { model } from '../core/models';
 
 export default function resultModel() {
-  const model = getModel(RESULT_MODEL, {
-    score: PENDING_ANSWER
+  return model({
+    name: RESULT_MODEL,
+    fields: {
+      score: PENDING_ANSWER
+    },
+    calculated: {},
+    readOnly: false
   });
-  return model;
 }
