@@ -1,8 +1,5 @@
 import state, { initialState } from './state';
 import getQuestions from '../data/questions/getSpellingQuestions';
-import answerModel from '../models/answerModel';
-import resultModel from '../models/resultModel';
-import questionModel from '../models/questionModel';
 import { updateModel } from '../core/models';
 import { options } from './options';
 
@@ -16,25 +13,15 @@ export function getCurrentQuestion() {
 }
 
 export function resetAnswers() {
-  const { questions } = state;
-
-  state.answers = questions.map((question) => {
-    return answerModel(question.id);
-  });
+  state.answers = state.questions.map((question) => ({ qid: question.id }));
 }
 
 export function resetResults() {
-  const { answers } = state;
-
-  state.results = answers.map(() => {
-    return resultModel();
-  });
+  state.results = state.answers.map((answer) => ({ qid: answer.qid }));
 }
 
 export function importQuestions() {
-  state.questions = getQuestions().map((question) => {
-    return questionModel(question);
-  });
+  state.questions = getQuestions();
 
   resetAnswers();
   resetResults();

@@ -32,6 +32,10 @@ export function addCalculatedProps(obj, props = {}) {
   });
 }
 
+export function modelArray(thisModel, array = []) {
+  return { isModelArray: true, model: thisModel, initialValue: array };
+}
+
 export function model(props = { name: '', fields: {}, calculated: {}, readOnly: false }) {
   const { name, fields, calculated, readOnly } = props;
   const obj = {};
@@ -50,8 +54,38 @@ export function model(props = { name: '', fields: {}, calculated: {}, readOnly: 
 
   // add getters and setters
   Object.keys(fields).forEach((key) => {
-    const initialType = varType(fields[key]);
     const propName = `${prefix}${key}`;
+    const propNameArrayModel = `${propName}_arrayModel`;
+    let initialType;
+
+    if (typeof fields[key] === 'object' && fields[key].isModelArray) {
+      initialType = 'array';
+
+      Object.defineProperty(obj, key, {
+        get: function get() {
+          return this[propName];
+        },
+        set: function set(value) {
+          const oldValue = this[propName];
+
+          if (value.isModelArray) {
+            // this is the initial write, so initialise this array
+            this[propName] = fields[key].initialValue;
+            this[propNameArrayModel] = fields[key].model;
+          } else {
+            this[propName] = value.map(this[propNameArrayModel]);
+          }
+
+          const updateTarget = `${obj.name}::${key}`;
+
+          updateFromModel(updateTarget, { model: obj, property: key, old: oldValue, new: value });
+        }
+      });
+      return;
+    }
+
+    initialType = varType(fields[key]);
+
     Object.defineProperty(obj, key, {
       get: function get() {
         return this[propName];
@@ -60,6 +94,7 @@ export function model(props = { name: '', fields: {}, calculated: {}, readOnly: 
         if (readOnly) {
           throw new Error(`${name} is read-only`);
         }
+
         const type = varType(value);
 
         if (type !== initialType) {
