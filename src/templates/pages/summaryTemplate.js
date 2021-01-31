@@ -1,6 +1,7 @@
 import { html } from 'lit-html';
+import { newQuiz } from '../../app/interactions';
 import state from '../../app/state';
-import { markAllAnswers } from '../../functions/marking';
+
 
 function getResponses() {
   
@@ -55,7 +56,9 @@ return html`
 
     <h3>Score</h3>
     <p>You spelled ${rightAnswers.length} out of ${responses.length} correctly.</p>
-    <p>You did not answer ${notAnswered.length} question${notAnswered.length === 1 ? '' : 's'}.</p>    
+    <p>You did not answer ${notAnswered.length} question${notAnswered.length === 1 ? '' : 's'}.</p>
+
+    <button @click=${newQuiz}>New Quiz</button>
   `;
 };
 
