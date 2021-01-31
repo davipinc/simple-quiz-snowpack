@@ -2,27 +2,6 @@ import { html } from 'lit-html';
 import { newQuiz } from '../../app/interactions';
 import state from '../../app/state';
 
-
-function getResponses() {
-  
-  const responses = state.questions.map((question, questionIndex) => { 
-    return {
-      preferredAnswer: question.answers[0],
-      userAnswer: state.answers[questionIndex].text,
-      score: state.results[questionIndex].score,
-      wasAnswered: state.answers[questionIndex].text.replace(/\s/g) !== ''
-    }
-  });
-  
-  return responses;
-}
-
-function getWrongAnswers() {
-  return state.answers.map( answer => {
-    return answer.score === 0 ? answer : undefined;
-  });
-}
-
 function breakIntoLetters(string) {
   if (typeof string !== 'string') {
     console.warn('Not a string', string);
@@ -30,6 +9,24 @@ function breakIntoLetters(string) {
   }
   return string.split('').join(', ')  
 }
+
+function getResponses() {
+  
+  const responses = state.questions.map((question, questionIndex) => { 
+    const answer = question.answers[0];
+    return {
+      preferredAnswer: answer,
+      userAnswer: state.answers[questionIndex].text,
+      score: state.results[questionIndex].score,
+      wasAnswered: state.answers[questionIndex].text.replace(/\s/g) !== '',
+      dictionaryUrl: `https://en.wiktionary.org/wiki/${answer}`,
+      spelledOut: `${answer}, spelled: ${breakIntoLetters(answer)}`
+    }
+  });
+  
+  return responses;
+}
+
 const summaryTemplate = () => {
   const responses = getResponses();
   const rightAnswers = responses.filter(response => response.score > 0);
@@ -47,9 +44,9 @@ return html`
 
     <ul>
       ${wrongAnswers.map(response => html`
-        <li aria-label="${response.preferredAnswer}, spelled: ${breakIntoLetters(response.preferredAnswer)}">
-          ${response.preferredAnswer}
-          ${ response.wasAnswered ? `(not "${response.userAnswer}")` : '(not answered)' }
+        <li>
+          <a href="${response.dictionaryUrl}" aria-label="${response.spelledOut}" target="_blank">${response.preferredAnswer}</a>
+          ${ response.wasAnswered ? `(not "${response.userAnswer}")` : '' }
         </li>
       `)}
     </ul>
