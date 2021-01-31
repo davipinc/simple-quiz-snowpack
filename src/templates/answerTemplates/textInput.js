@@ -27,6 +27,7 @@ export default function textInput() {
         id=${fieldId}
         type="text"
         placeholder="Type your answer here"
+        autocomplete="off"
         .value=${answer.text}
         @keyup=${keyHandler}
         @change=${setAnswer}

@@ -20,7 +20,6 @@ const spellQuestion = (word) => {
         type="button"
         @click=${readOutWord}
         data-speak="${word}"
-        autocomplete="off"
         spellcheck="false"
         value="Word &#9654;"
       />
