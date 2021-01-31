@@ -1,6 +1,6 @@
 import { speakNow } from '../core/speech';
 import { state } from './state';
-import { getCurrentQuestion, newQuestions, reset } from './main';
+import { finishQuiz, getCurrentQuestion, newQuestions, reset } from './main';
 
 export function prevQuestion() {
   if (state.viewingFirstQuestion) {
@@ -32,6 +32,13 @@ export function newQuiz() {
     return;
   }
   newQuestions();
+}
+
+export function endQuiz() {
+  if (!confirm('Are you sure you want to submit your answers?')) {
+    return;
+  }
+  finishQuiz();
 }
 
 export function readQuestion() {

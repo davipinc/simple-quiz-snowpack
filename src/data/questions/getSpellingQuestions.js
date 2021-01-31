@@ -6,7 +6,7 @@ const textImports = {
   year3to4
 };
 
-const defaultMaxQuestions = 20;
+const defaultMaxQuestions = 10;
 
 function noComments(line) {
   const check = line.trim();

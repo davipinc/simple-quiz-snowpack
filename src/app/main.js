@@ -2,9 +2,15 @@ import state, { initialState } from './state';
 import getQuestions from '../data/questions/getSpellingQuestions';
 import { updateModel } from '../core/models';
 import { options } from './options';
+import { markAllAnswers } from '../functions/marking';
 
 export function startQuiz() {
   state.currentPage = 'quiz';
+}
+
+export function finishQuiz() {
+  markAllAnswers();
+  state.currentPage = 'summary';
 }
 
 export function getCurrentQuestion() {
