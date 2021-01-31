@@ -19,7 +19,7 @@
         "no-alert": "off",
         "no-restricted-globals": "off",
         "linebreak-style": [
-            "error",
+            "ignore",
             "windows"
         ],
         "quotes": [
