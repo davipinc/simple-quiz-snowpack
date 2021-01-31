@@ -12,7 +12,10 @@ module.exports = {
         inputExtensions: ['.md', '.csv', '.txt'],
         inputEncoding: 'utf-8'
       }
-    ]
+    ],
+    [
+      '@snowpack/plugin-webpack'
+    ]    
   ],
   install: [
     /* ... */
