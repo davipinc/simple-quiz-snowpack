@@ -5,7 +5,7 @@ function speak(phrase, immediately = false) {
   }
 
   const utterance = new SpeechSynthesisUtterance(phrase);
-  utterance.lang = 'en-GB';
+  utterance.lang = 'fr-FR';
   utterance.rate = 0.85;
   utterance.onend = () => {
     console.debug('Speaking stopped', phrase);
